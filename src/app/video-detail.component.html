@@ -1,0 +1,26 @@
+﻿<div>
+  <h2>Video Details</h2>
+  <button (click)="goBack();">Back</button>
+
+  <div *ngIf="video" class="video-details">
+    <div>
+      <video-result [video]="video"></video-result>
+    </div>
+    <div>
+      <label>Status: </label>{{video.status}}
+    </div>
+    <div>
+      <label>Length: </label>{{video.length}}
+    </div>
+    <div>
+      <a href="{{video.url}}">Link to video</a>
+    </div>
+    <div *ngIf="video.animated_preview_url">
+      <img src="{{video.animated_preview_url}}" />
+    </div>
+  </div>
+  
+  <div *ngIf="!video">
+    <h3>No video selected.</h3>
+  </div>
+</div>

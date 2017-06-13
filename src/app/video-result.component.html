@@ -1,0 +1,15 @@
+﻿<div class="video-result">
+  <span>{{video.title}}</span>
+  <div *ngIf="video.thumbnails[0]">
+    <img src="{{video.thumbnails[0].url}}" />
+  </div>
+  <div>
+    <label>Game: </label>{{video.game}}
+  </div>
+  <div>
+    <label>Publish time: </label>{{video.published_at}}
+  </div>
+  <div>
+    <label>Broadcast type: </label>{{video.broadcast_type}}
+  </div>
+</div>

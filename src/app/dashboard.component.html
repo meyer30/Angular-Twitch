@@ -1,0 +1,69 @@
+﻿<div class="grid-search">
+  <h2>Search for Top Videos</h2>
+  <table class="grid-filter">
+    <tr>
+      <td>
+        <label>game: </label>
+      </td>
+      <td>
+        <input #game />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>limit results to: </label>
+      </td>
+      <td>
+        <input #numResults type="number" max="100" min="1" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>period: </label>
+      </td>
+      <td>
+        <form #f="ngForm">
+          <input type="radio" name="period" value="week" [(ngModel)]="searchPeriod" /> Week<br />
+          <input type="radio" name="period" value="month" [(ngModel)]="searchPeriod" /> Month<br />
+          <input type="radio" name="period" value="all" [(ngModel)]="searchPeriod" /> All<br />
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>broadcast_type: </label><br />
+      </td>
+      <td>
+        <input type="checkbox" [(ngModel)]="includeArchive" /> Archive<br />
+        <input type="checkbox" [(ngModel)]="includeHighlight" /> Highlight<br />
+        <input type="checkbox" [(ngModel)]="includeUpload" /> Upload<br />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label>sort by: </label>
+      </td>
+      <td>
+        <form #f="ngForm">
+          <input type="radio" name="sort" value="time" [(ngModel)]="sortBy" /> Most Recent<br />
+          <input type="radio" name="sort" value="views" [(ngModel)]="sortBy" /> Most Views<br />
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button (click)="search(game.value, numResults.value);">Search</button>
+      </td>
+    </tr>
+  </table>
+
+  <div *ngIf="isSearchDone">
+    <h3>{{resultVideos.length}} search results found</h3>
+    <ul class="videoResult">
+      <li *ngFor="let video of resultVideos" (click)="onSelect(video)">
+        <video-result [video]="video"></video-result>
+      </li>
+    </ul>
+  </div>
+</div>
